@@ -39,7 +39,15 @@ where UnitsOnOrder+UnitsInStock<10
 
 
 
-
+                         ...זה כמעט נפתר רק לקחת אנשים הרלוונטים ...
+select distinct orders.OrderDate,orders.employeeID,employees.FirstName,employees.LastName,employees.HomePhone 
+from orders,employees
+where employees.EmployeeID=orders.EmployeeID <> 8 and orders.OrderDate in 
+(
+select distinct max(orders.OrderDate)
+ from orders,employees
+ where orders.EmployeeID=employees.EmployeeID <>8
+ )
 
 
 
