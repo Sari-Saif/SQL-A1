@@ -36,28 +36,13 @@ where UnitsOnOrder+UnitsInStock<10
   #and employees.EmployeeID <> 8
 
 
-
-
-
-                          לא ממש ...זה כמעט נפתר רק לקחת אנשים הרלוונטים ...
-select distinct orders.OrderDate,orders.employeeID,employees.FirstName,employees.LastName,employees.HomePhone 
-from orders,employees
-where employees.EmployeeID=orders.EmployeeID <> 8 and orders.OrderDate in 
-(
-select distinct max(orders.OrderDate)
- from orders,employees
- where orders.EmployeeID=employees.EmployeeID <>8
- )
-
------------------------------------------------------------------------------------
-אני אנסה עד שאפתור4- 
-select  distinct employees.EmployeeID,employees.FirstName,employees.LastName,employees.HomePhone,orders.OrderDate
+שאלה 4 נפתרה גם 
+select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.HomePhone
  from employees,orders
- where employees.EmployeeID <> 8 and  orders.OrderDate in
-
-(SELECT distinct orders.OrderDate FROM
+ where employees.EmployeeID  <> 8 and employees.EmployeeID= orders.EmployeeID  and orders.OrderDate in 
+(SELECT distinct max(orders.OrderDate) FROM
  northwind.orders,northwind.employees
  where orders.EmployeeID = 8 and orders.OrderDate 
  between  '1998-05-01 00:00:00' and '1998-05-06 00:00:00')
-
+ group by employees.LastName
 
