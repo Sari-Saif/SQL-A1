@@ -19,6 +19,6 @@ select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.Ho
 (SELECT distinct max(orders.OrderDate) FROM
  northwind.orders,northwind.employees
  where orders.EmployeeID = 8 and orders.OrderDate 
- between  '1998-05-01 00:00:00' and '1998-05-06 00:00:00')
+ between  '1998-05-01 00:00:00' and '1998-05-08 00:00:00')
  group by employees.LastName
 
