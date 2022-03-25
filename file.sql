@@ -27,5 +27,7 @@ select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.Ho
 
 ניסיון לפתור שאלה 5 
 #SELECT ProductName,CompanyName,extract(year from OrderDate) as'OrederYear'
-#FROM products,orders INNER JOIN customers
+#FROM products,orders  
+#JOIN customers
 #ON orders.CustomerID = customers.CustomerID
+#order by ProductName
