@@ -10,7 +10,7 @@ where UnitsOnOrder+UnitsInStock<10
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- # פתרון  שאלה  4
+ #  שאלה  4 פתרון   
 
 
 select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.HomePhone,DATE_ADD('1998-05-06 00:00:00', INTERVAL 7 DAY ) as 'insulation ends at...'
@@ -22,12 +22,47 @@ select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.Ho
  between  '1998-05-01 00:00:00' and '1998-05-08 00:00:00')
  group by employees.LastName
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+#  שאלה  5 פתרון
 
-ניסיון לפתור שאלה 5 
-#SELECT ProductName,CompanyName,extract(year from OrderDate) as'OrederYear'
-#FROM products,orders  
-#JOIN customers
-#ON orders.CustomerID = customers.CustomerID
-#order by ProductName
+select  
+`OwnHelperTable`.ProductName,
+`OwnHelperTable`.CompanyName,
+`OwnHelperTable`.OrederYear,
+case `OwnHelperTable`.Qrt
+when  1 then (`OwnHelperTable` .UnitPrice * `OwnHelperTable` .Quantity )
+else 0
+end as 'Qtr1'
+,
+ case `OwnHelperTable`.Qrt
+when 2 then `OwnHelperTable` .UnitPrice * `OwnHelperTable` .Quantity 
+else 0
+end as 'Qtr2'
+,
+ case `OwnHelperTable`.Qrt
+when 3 then `OwnHelperTable` .UnitPrice * `OwnHelperTable` .Quantity 
+else 0
+end as 'Qtr3'
+,
+ case `OwnHelperTable`.Qrt
+when 4 then `OwnHelperTable` .UnitPrice * `OwnHelperTable` .Quantity 
+else 0
+end as 'Qtr4'
+from 	
+( 
+SELECT
+ProductName,CompanyName,`order details` .UnitPrice ,`order details`.Quantity,
+extract(year from OrderDate) AS 'OrederYear',
+QUARTER(OrderDate) AS 'Qrt'
+FROM products,orders  
+  JOIN customers
+ON orders.CustomerID = customers.CustomerID
+ JOIN `order details` 
+ON `order details`.OrderID = orders.OrderID
+ where products.ProductID = `order details`.ProductID
+order by ProductName ASC,CompanyName ASC 
+) 
+as `OwnHelperTable`;
