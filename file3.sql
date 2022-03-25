@@ -22,3 +22,10 @@ select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.Ho
  between  '1998-05-01 00:00:00' and '1998-05-08 00:00:00')
  group by employees.LastName
 
+
+
+
+ניסיון לפתור שאלה 5 
+#SELECT ProductName,CompanyName,extract(year from OrderDate) as'OrederYear'
+#FROM products,orders INNER JOIN customers
+#ON orders.CustomerID = customers.CustomerID
