@@ -1,6 +1,6 @@
 
 
-#שאלה 2  פתרון
+# 2 -solution
 
 select products.ProductID , 
 products.ProductName ,
@@ -13,7 +13,7 @@ from products,`order details`
  where products.ProductID = `order details`.ProductID group by products.ProductID
  order by max(`order details` .UnitPrice)
 
-#שאלה 3  פתרון  
+# 3- solution   
 select distinct ProductID,ProductName,SupplierID,CompanyName,Phone,100-(UnitsOnOrder+UnitsInStock)as orderto
 from 
 (select products.ProductID,products.ProductName,products.UnitsOnOrder,products.UnitsInStock,products.SupplierID,CompanyName,Phone from products,suppliers
@@ -21,7 +21,7 @@ where UnitsOnOrder+UnitsInStock<10
  and  suppliers.SupplierID=products.SupplierID )as main
 
 
- #  שאלה  4 פתרון   
+ # 4 -solution   
 
 
 select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.HomePhone,DATE_ADD('1998-05-06 00:00:00', INTERVAL 7 DAY ) as 'insulation ends at...'
@@ -34,7 +34,7 @@ select  employees.EmployeeID,employees.FirstName,employees.LastName,employees.Ho
  group by employees.LastName
 
 
-#  שאלה  5 פתרון
+# 5 - solution
 
 select  
 `OwnHelperTable`.ProductName,
